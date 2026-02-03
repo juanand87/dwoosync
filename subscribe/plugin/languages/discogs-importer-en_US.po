@@ -1,0 +1,441 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DWooSync 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.7\n"
+"X-Domain: dwoosync\n"
+
+msgid "Configuración API"
+msgstr "API Configuration"
+
+msgid "Plantillas y Etiquetas"
+msgstr "Templates and Tags"
+
+msgid "Spotify"
+msgstr "Spotify"
+
+msgid "Opciones Avanzadas"
+msgstr "Advanced Options"
+
+msgid "Configuración de la API de Discogs"
+msgstr "Discogs API Configuration"
+
+msgid "Introduce tus credenciales de la API de Discogs. Puedes obtenerlas desde el portal de desarrolladores de Discogs."
+msgstr "Enter your Discogs API credentials. You can get them from the Discogs developer portal."
+
+msgid "Discogs API Key"
+msgstr "Discogs API Key"
+
+msgid "Tu clave de API de Discogs."
+msgstr "Your Discogs API key."
+
+msgid "Discogs API Secret"
+msgstr "Discogs API Secret"
+
+msgid "Tu secreto de API de Discogs."
+msgstr "Your Discogs API secret."
+
+msgid "Configuración del Servidor API"
+msgstr "API Server Configuration"
+
+msgid "Configuración para conectar con el servidor API de Discogs Importer."
+msgstr "Configuration to connect with the Discogs Importer API server."
+
+msgid "URL del Servidor API"
+msgstr "API Server URL"
+
+msgid "URL base del servidor API (ej: http://localhost/api_discogs/api/index.php?endpoint=)"
+msgstr "Base URL of the API server (e.g. http://localhost/api_discogs/api/index.php?endpoint=)"
+
+msgid "Entorno actual:"
+msgstr "Current environment:"
+
+msgid "Para cambiar a producción, modifique el archivo config/api-config.php"
+msgstr "To change to production, modify the config/api-config.php file"
+
+msgid "Información del Servidor API"
+msgstr "API Server Information"
+
+msgid "El servidor API se configura automáticamente en el entorno de producción."
+msgstr "The API server is automatically configured in the production environment."
+
+msgid "Estado de Conexión"
+msgstr "Connection Status"
+
+msgid "Conexión exitosa con la API"
+msgstr "Successful connection with the API"
+
+msgid "Entorno de producción"
+msgstr "Production environment"
+
+msgid "La URL del servidor API se configura automáticamente."
+msgstr "The API server URL is configured automatically."
+
+msgid "Clave de Licencia"
+msgstr "License Key"
+
+msgid "Tu clave de licencia para acceder al servidor API."
+msgstr "Your license key to access the API server."
+
+msgid "Fecha de Renovación"
+msgstr "Renewal Date"
+
+msgid "Configura cómo se generan las descripciones de productos y las etiquetas."
+msgstr "Configure how product descriptions and tags are generated."
+
+msgid "Plantilla de Descripción Corta"
+msgstr "Short Description Template"
+
+msgid "Haz clic en los botones para insertar shortcodes en la posición del cursor:"
+msgstr "Click the buttons to insert shortcodes at the cursor position:"
+
+msgid "Shortcodes Disponibles:"
+msgstr "Available Shortcodes:"
+
+msgid "Plantilla de Descripción Larga"
+msgstr "Long Description Template"
+
+msgid "Plantilla para la descripción completa del producto. Haz clic en los botones para insertar shortcodes:"
+msgstr "Template for the complete product description. Click the buttons to insert shortcodes:"
+
+msgid "Importar Estilos como Etiquetas"
+msgstr "Import Styles as Tags"
+
+msgid "Importar los \"Estilos\" de Discogs como etiquetas de producto en WooCommerce."
+msgstr "Import Discogs \"Styles\" as product tags in WooCommerce."
+
+msgid "Configura e integra automáticamente widgets de Spotify en tus productos y páginas."
+msgstr "Configure and automatically integrate Spotify widgets in your products and pages."
+
+msgid "Integración con Spotify"
+msgstr "Spotify Integration"
+
+msgid "La integración con Spotify está disponible solo en el Plan +Spotify."
+msgstr "Spotify integration is only available in the +Spotify Plan."
+
+msgid "Mejora tu plan para acceder a esta funcionalidad y mostrar reproductores de Spotify en tus productos."
+msgstr "Upgrade your plan to access this functionality and display Spotify players in your products."
+
+msgid "Widget de Spotify"
+msgstr "Spotify Widget"
+
+msgid "Mejorar Plan"
+msgstr "Upgrade Plan"
+
+msgid "Shortcode Disponible"
+msgstr "Available Shortcode"
+
+msgid "Uso básico:"
+msgstr "Basic usage:"
+
+msgid "Con ancho personalizado:"
+msgstr "With custom width:"
+
+msgid "Parámetros disponibles:"
+msgstr "Available parameters:"
+
+msgid "Ancho del widget (por defecto: 500px)"
+msgstr "Widget width (default: 500px)"
+
+msgid "El alto se ajusta automáticamente. Tamaño estándar: 500px de ancho, alto automático."
+msgstr "Height adjusts automatically. Standard size: 500px width, automatic height."
+
+msgid "Configuración del Reproductor"
+msgstr "Player Configuration"
+
+msgid "Configura el aspecto y comportamiento del reproductor de Spotify."
+msgstr "Configure the appearance and behavior of the Spotify player."
+
+msgid "Ancho del Reproductor"
+msgstr "Player Width"
+
+msgid "Ancho en píxeles del reproductor de Spotify (mínimo: 300px, máximo: 800px)"
+msgstr "Width in pixels of the Spotify player (minimum: 300px, maximum: 800px)"
+
+msgid "Tema del Reproductor"
+msgstr "Player Theme"
+
+msgid "Selecciona el tema visual del reproductor de Spotify."
+msgstr "Select the visual theme of the Spotify player."
+
+msgid "Tema Claro"
+msgstr "Light Theme"
+
+msgid "Tema Oscuro"
+msgstr "Dark Theme"
+
+msgid "Mostrar Controles"
+msgstr "Show Controls"
+
+msgid "Mostrar controles de reproducción (play/pause, siguiente, anterior)"
+msgstr "Show playback controls (play/pause, next, previous)"
+
+msgid "Vista Previa"
+msgstr "Preview"
+
+msgid "Vista previa del reproductor de Spotify con la configuración actual:"
+msgstr "Preview of the Spotify player with current configuration:"
+
+msgid "Configure additional options for the importer."
+msgstr "Configure additional options for the importer."
+
+msgid "Formato en Título"
+msgstr "Format in Title"
+
+msgid "Anteponer el formato (ej. \"Vinilo\") al título del producto al importar."
+msgstr "Prepend the format (e.g. \"Vinyl\") to the product title when importing."
+
+msgid "Personalización de Pestañas"
+msgstr "Tab Customization"
+
+msgid "Personaliza las pestañas de la página de producto."
+msgstr "Customize the product page tabs."
+
+msgid "Cambiar Pestaña \"Descripción\" por \"Listado de Canciones\""
+msgstr "Change \"Description\" Tab to \"Tracklist\""
+
+msgid "Cambiar el nombre de la pestaña \"Descripción\" por \"Listado de Canciones\" en las páginas de producto."
+msgstr "Change the \"Description\" tab name to \"Tracklist\" on product pages."
+
+msgid "Idioma del Plugin"
+msgstr "Plugin Language"
+
+msgid "Selecciona el idioma para la interfaz del plugin."
+msgstr "Select the language for the plugin interface."
+
+msgid "Español"
+msgstr "Spanish"
+
+msgid "English"
+msgstr "English"
+
+msgid "Acciones Rápidas en Editor"
+msgstr "Quick Actions in Editor"
+
+msgid "Habilitar o deshabilitar los campos de acceso rápido que aparecen en la caja del importador dentro de la página de edición de producto."
+msgstr "Enable or disable the quick access fields that appear in the importer box within the product editing page."
+
+msgid "Botón Publicar"
+msgstr "Publish Button"
+
+msgid "Mostrar el botón \"Publicar\" junto al de \"Buscar\"."
+msgstr "Show the \"Publish\" button next to the \"Search\" button."
+
+msgid "Campo de Precio"
+msgstr "Price Field"
+
+msgid "Mostrar un campo para introducir el precio rápidamente."
+msgstr "Show a field to quickly enter the price."
+
+msgid "Selector de Categorías"
+msgstr "Category Selector"
+
+msgid "Mostrar un selector de categorías con buscador."
+msgstr "Show a category selector with search functionality."
+
+msgid "Su suscripción está vencida, en X días se bloqueará su suscripción, debe renovarla acá: http://www.dwoosync.com"
+msgstr "Your subscription has expired, in X days your subscription will be blocked, you must renew it here: http://www.dwoosync.com"
+
+msgid "Tu licencia expira en X días"
+msgstr "Your license expires in X days"
+
+msgid "Tienes una factura pendiente de pago"
+msgstr "You have a pending payment invoice"
+
+msgid "Período de Gracia: Tu suscripción expiró pero tienes X días de gracia restantes"
+msgstr "Grace Period: Your subscription has expired but you have X grace days remaining"
+
+msgid "Suspendido: Tu período de gracia ha expirado"
+msgstr "Suspended: Your grace period has expired"
+
+msgid "Límite de Uso: Has utilizado el X% de tus importaciones del ciclo actual"
+msgstr "Usage Limit: You have used X% of your imports from the current cycle"
+
+msgid "Te quedan pocas importaciones este mes. Considera actualizar tu plan"
+msgstr "You have few imports left this month. Consider upgrading your plan"
+
+msgid "Has alcanzado el límite de importaciones para tu plan actual"
+msgstr "You have reached the import limit for your current plan"
+
+msgid "¡Completa tu suscripción! Selecciona un plan para continuar usando dwoosync"
+msgstr "Complete your subscription! Select a plan to continue using dwoosync"
+
+msgid "No se ha completado la configuración de tu suscripción"
+msgstr "Your subscription configuration has not been completed"
+
+msgid "Vencido"
+msgstr "Expired"
+
+msgid "Expirada"
+msgstr "Expired"
+
+msgid "Suspendido"
+msgstr "Suspended"
+
+msgid "Suscripción expirada"
+msgstr "Subscription expired"
+
+msgid "Licencia inválida o expirada"
+msgstr "Invalid or expired license"
+
+msgid "LÍMITE EXCEDIDO - Bloqueando importación"
+msgstr "LIMIT EXCEEDED - Blocking import"
+
+msgid "Límite alcanzado"
+msgstr "Limit reached"
+
+msgid "Mejora tu plan aquí para obtener más importaciones"
+msgstr "Upgrade your plan here to get more imports"
+
+msgid "Mejora tu plan para obtener importaciones ilimitadas"
+msgstr "Upgrade your plan to get unlimited imports"
+
+msgid "Licencia inválida o expirada. Debe adquirir una licencia válida en: www.discogsync.com"
+msgstr "Invalid or expired license. You must acquire a valid license at: www.discogsync.com"
+
+msgid "ID de Lanzamiento, Catálogo o Matriz:"
+msgstr "Release ID, Catalog or Matrix:"
+
+msgid "Vinilo"
+msgstr "Vinyl"
+
+msgid "CD"
+msgstr "CD"
+
+msgid "Cassette"
+msgstr "Cassette"
+
+msgid "Filtrar por año (opcional):"
+msgstr "Filter by year (optional):"
+
+msgid "Resultados de Búsqueda de Discogs"
+msgstr "Discogs Search Results"
+
+msgid "Advertencia: Su suscripción está vencida, en 1 días se bloqueará su suscripción, debe renovarla acá:"
+msgstr "Warning: Your subscription has expired, in 1 days your subscription will be blocked, you must renew it here:"
+
+msgid "Filtrar por país:"
+msgstr "Filter by country:"
+
+msgid "País:"
+msgstr "Country:"
+
+msgid "Año:"
+msgstr "Year:"
+
+msgid "Advertencia:"
+msgstr "Warning:"
+
+msgid "Anteponer Formato al Título"
+msgstr "Prepend Format to Title"
+
+msgid "Su suscripción está vencida, en 1 días se bloqueará su suscripción, debe renovarla acá: http://www.dwoosync.com"
+msgstr "Your subscription has expired, in 1 days your subscription will be blocked, you must renew it here: http://www.dwoosync.com"
+
+msgid "Su suscripción está vencida, en %s días se bloqueará su suscripción, debe renovarla acá: http://www.dwoosync.com"
+msgstr "Your subscription has expired, in %s days your subscription will be blocked, you must renew it here: http://www.dwoosync.com"
+
+msgid "Todos los países"
+msgstr "All countries"
+
+msgid "Licencia Expirada:"
+msgstr "License Expired:"
+
+msgid "Renueve su suscripción acá: https://www.dwoosync.com"
+msgstr "Renew your subscription here: https://www.dwoosync.com"
+
+msgid "Error al importar: Has alcanzado el límite de importaciones para tu plan actual (10 por mes). Mejora tu plan aquí para obtener más importaciones."
+msgstr "Import error: You have reached the import limit for your current plan (10 per month). Upgrade your plan here to get more imports."
+
+msgid "Categorías"
+msgstr "Categories"
+
+msgid "Categorías Automáticas"
+msgstr "Automatic Categories"
+
+msgid "Configura las categorías que se asignarán automáticamente según el formato del producto importado."
+msgstr "Configure the categories that will be automatically assigned based on the format of the imported product."
+
+msgid "Categorías para Vinilo"
+msgstr "Categories for Vinyl"
+
+msgid "Selecciona hasta 2 categorías que se asignarán automáticamente a los productos de vinilo."
+msgstr "Select up to 2 categories that will be automatically assigned to vinyl products."
+
+msgid "Categorías para CD"
+msgstr "Categories for CD"
+
+msgid "Selecciona hasta 2 categorías que se asignarán automáticamente a los productos de CD."
+msgstr "Select up to 2 categories that will be automatically assigned to CD products."
+
+msgid "Categorías para Cassette"
+msgstr "Categories for Cassette"
+
+msgid "Selecciona hasta 2 categorías que se asignarán automáticamente a los productos de cassette."
+msgstr "Select up to 2 categories that will be automatically assigned to cassette products."
+
+msgid "Cómo Funciona"
+msgstr "How It Works"
+
+msgid "Cuando importes un producto, el sistema detectará automáticamente el formato seleccionado (Vinilo, CD o Cassette)."
+msgstr "When you import a product, the system will automatically detect the selected format (Vinyl, CD or Cassette)."
+
+msgid "Se asignarán automáticamente las categorías configuradas para ese formato específico."
+msgstr "The configured categories for that specific format will be automatically assigned."
+
+msgid "Esta configuración es opcional - si no configuras categorías, el producto se importará sin categorías automáticas."
+msgstr "This configuration is optional - if you don't configure categories, the product will be imported without automatic categories."
+
+msgid "Puedes cambiar las categorías manualmente después de la importación si es necesario."
+msgstr "You can change the categories manually after import if necessary."
+
+msgid "Seleccionar categoría 1"
+msgstr "Select category 1"
+
+msgid "Seleccionar categoría 2"
+msgstr "Select category 2"
+
+msgid "Todos los años"
+msgstr "All years"
+
+msgid "Probar Conexión"
+msgstr "Test Connection"
+
+msgid "Probar conexión con Discogs.com"
+msgstr "Test connection with Discogs.com"
+
+msgid "Probar Licencia"
+msgstr "Test License"
+
+msgid "Probar Credenciales de API"
+msgstr "Test API Credentials"
+
+msgid "Casos de Uso"
+msgstr "Use Cases"
+
+msgid "1. En páginas de producto WooCommerce"
+msgstr "1. On WooCommerce product pages"
+
+msgid "El shortcode detecta automáticamente el título del producto y busca el álbum en Spotify."
+msgstr "The shortcode automatically detects the product title and searches for the album on Spotify."
+
+msgid "2. En posts y páginas"
+msgstr "2. On posts and pages"
+
+msgid "Si el post tiene metadatos de Discogs guardados, los usará para la búsqueda."
+msgstr "If the post has saved Discogs metadata, it will use it for the search."
+
+msgid "3. En cualquier parte del sitio"
+msgstr "3. Anywhere on the site"
+
+msgid "Puedes usar el shortcode en cualquier parte donde necesites mostrar un widget de Spotify."
+msgstr "You can use the shortcode anywhere you need to display a Spotify widget."

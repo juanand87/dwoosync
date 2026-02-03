@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Allow important pages
+Allow: /subscribe/
+Allow: /subscribe/pages/
+Allow: /admin/
+
+# Block sensitive files
+Disallow: /config/
+Disallow: /includes/
+Disallow: /temp/
+Disallow: /*.log
+Disallow: /debug/
+Disallow: /test/
+
+# Block admin actions
+Disallow: /admin/actions.php
+Disallow: /admin/generate_zip.php
+
+# Sitemap location
+Sitemap: https://dwoosync.com/sitemap.xml
+
+
+

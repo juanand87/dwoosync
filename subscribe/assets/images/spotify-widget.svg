@@ -1,0 +1,38 @@
+<svg width="300" height="180" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo del reproductor -->
+  <rect width="300" height="180" rx="12" fill="#1db954"/>
+  
+  <!-- Header con logo de Spotify -->
+  <rect x="0" y="0" width="300" height="40" rx="12" fill="#1ed760"/>
+  <circle cx="20" cy="20" r="8" fill="white"/>
+  <path d="M 15 15 L 25 20 L 15 25 Z" fill="#1db954"/>
+  <text x="35" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Spotify</text>
+  
+  <!-- Área principal -->
+  <rect x="20" y="50" width="260" height="120" rx="8" fill="#191414"/>
+  
+  <!-- Portada del álbum -->
+  <rect x="30" y="60" width="60" height="60" rx="4" fill="#333"/>
+  <circle cx="60" cy="90" r="20" fill="white"/>
+  <circle cx="60" cy="90" r="8" fill="#333"/>
+  
+  <!-- Información del track -->
+  <text x="100" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">The Dark Side of the Moon</text>
+  <text x="100" y="90" font-family="Arial, sans-serif" font-size="10" fill="#b3b3b3">Pink Floyd</text>
+  
+  <!-- Lista de tracks -->
+  <text x="100" y="110" font-family="Arial, sans-serif" font-size="9" fill="white">1. Speak to Me</text>
+  <text x="100" y="125" font-family="Arial, sans-serif" font-size="9" fill="white">2. Breathe (In the Air)</text>
+  <text x="100" y="140" font-family="Arial, sans-serif" font-size="9" fill="white">3. On the Run</text>
+  
+  <!-- Controles -->
+  <circle cx="200" cy="100" r="15" fill="white"/>
+  <path d="M 195 95 L 195 105 L 205 100 Z" fill="#1db954"/>
+  
+  <!-- Botones adicionales -->
+  <circle cx="230" cy="100" r="8" fill="#333"/>
+  <text x="225" y="105" font-family="Arial, sans-serif" font-size="8" fill="white">+</text>
+  
+  <circle cx="250" cy="100" r="8" fill="#333"/>
+  <text x="248" y="105" font-family="Arial, sans-serif" font-size="8" fill="white">⋯</text>
+</svg>

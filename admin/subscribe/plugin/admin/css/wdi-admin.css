@@ -1,0 +1,325 @@
+/* Estilos para la ventana modal del importador de Discogs */
+
+/* === INDICADOR DE CARGA === */
+.wdi-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.wdi-loading-spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.wdi-spinner-circle {
+    width: 100%;
+    height: 100%;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0073aa;
+    border-radius: 50%;
+    animation: wdi-spin 1s linear infinite;
+}
+
+.wdi-loading-text {
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+@keyframes wdi-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animación de pulso para el texto */
+.wdi-loading-text {
+    animation: wdi-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes wdi-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 1. El fondo oscuro semitransparente */
+#wdi-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000; /* Asegura que esté por encima de todo */
+    display: flex; /* Usa flexbox para centrar el contenido */
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2. El contenedor principal de la modal */
+#wdi-modal-content {
+    background: #fff;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 600px; /* Ancho máximo para no ocupar toda la pantalla */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Altura máxima para que no se salga de la pantalla */
+}
+
+/* 3. El encabezado de la modal */
+#wdi-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#wdi-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Botón de cierre */
+#wdi-modal-close {
+    text-decoration: none;
+    cursor: pointer;
+    color: #666;
+}
+#wdi-modal-close:hover {
+    color: #000;
+}
+
+/* 4. El cuerpo de la modal (con scroll si es necesario) */
+#wdi-modal-body {
+    padding: 20px;
+    overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+}
+
+/* Estilos para el filtro de país dentro de la modal */
+#discogs-country-filter-wrapper {
+    margin-top: 0; /* Quitar el margen superior que tenía antes */
+    margin-bottom: 20px; /* Añadir espacio debajo antes de los resultados */
+    padding-bottom: 15px; /* Añadir espacio interior */
+    border-bottom: 1px solid #eee; /* Separador visual */
+}
+
+/* Estilos para el filtro de país en la modal */
+#wdi-modal-body #discogs-country-filter-wrapper {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+#wdi-modal-body #discogs-country-filter-wrapper label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#wdi-modal-body #discogs_country_filter {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px;
+    width: 100%;
+}
+
+#wdi-modal-body #discogs_country_filter:disabled {
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Ajustes a los resultados dentro de la modal */
+.wdi-result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.wdi-thumb {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.wdi-info {
+    flex-grow: 1;
+}
+
+.wdi-import-btn {
+    margin-left: 15px;
+}
+
+/* ===== ESTILOS PARA PESTAÑAS DE CONFIGURACIÓN ===== */
+
+.wdi-tabs-wrapper {
+    margin-top: 20px;
+}
+
+.wdi-tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #ccd0d4;
+    margin-bottom: 0;
+    background: #f1f1f1;
+    border-radius: 4px 4px 0 0;
+}
+
+.wdi-tab-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #50575e;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+}
+
+.wdi-tab-link:hover {
+    color: #2271b1;
+    background: #fff;
+}
+
+.wdi-tab-link.active {
+    color: #2271b1;
+    background: #fff;
+    border-bottom-color: #2271b1;
+    font-weight: 600;
+}
+
+.wdi-tab-link .dashicons {
+    margin-right: 8px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.wdi-tabs-content {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0;
+}
+
+.wdi-tab-panel {
+    display: none;
+    padding: 30px;
+}
+
+.wdi-tab-panel.active {
+    display: block;
+}
+
+/* Asegurar que los campos estén siempre visibles para el envío del formulario */
+.wdi-tabs-content .wdi-tab-panel {
+    position: relative;
+}
+
+.wdi-tabs-content .wdi-tab-panel:not(.active) {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.wdi-tab-panel h2 {
+    margin-top: 0;
+    color: #1d2327;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.wdi-tab-panel h3 {
+    color: #1d2327;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.wdi-tab-panel .description {
+    color: #646970;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.wdi-tab-panel .form-table {
+    margin-top: 0;
+}
+
+.wdi-tab-panel .form-table th {
+    width: 200px;
+    padding: 15px 10px 15px 0;
+    vertical-align: top;
+}
+
+.wdi-tab-panel .form-table td {
+    padding: 15px 10px;
+    vertical-align: top;
+}
+
+.wdi-tab-panel .form-table td p.description {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+}
+
+/* Estilos específicos para los campos de las pestañas */
+.wdi-tab-panel input[type="text"],
+.wdi-tab-panel input[type="password"] {
+    width: 100%;
+    max-width: 400px;
+}
+
+.wdi-tab-panel .wp-editor-wrap {
+    max-width: 600px;
+}
+
+/* Botón de guardar */
+.wdi-tabs-content .submit {
+    padding: 20px 30px;
+    background: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .wdi-tabs-nav {
+        flex-direction: column;
+    }
+    
+    .wdi-tab-link {
+        border-bottom: 1px solid #ccd0d4;
+        border-right: none;
+    }
+    
+    .wdi-tab-link:last-child {
+        border-bottom: none;
+    }
+    
+    .wdi-tab-panel {
+        padding: 20px 15px;
+    }
+}

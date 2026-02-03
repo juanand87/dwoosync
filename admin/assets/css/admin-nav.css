@@ -1,0 +1,65 @@
+/* Menú de navegación fijo para admin */
+.admin-nav {
+    background: #2c3e50;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: #34495e;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn:hover {
+    background: #4a6741;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.nav-btn-primary {
+    background: #27ae60;
+}
+
+.nav-btn-primary:hover {
+    background: #2ecc71;
+}
+
+.admin-nav i {
+    font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+
+

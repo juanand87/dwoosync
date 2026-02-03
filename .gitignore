@@ -1,0 +1,48 @@
+# Archivos de configuración sensibles
+config/config.php
+config/database.php
+config/paypal.php
+
+# Logs
+logs/*.log
+error_log
+*.log
+
+# Directorios temporales
+temp/*
+!temp/.gitkeep
+
+# Vendor (dependencias de Composer)
+vendor/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Papelera
+papelera/*
+
+# Archivos de respaldo
+*.backup
+*.bak
+*.old
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de base de datos locales
+*.sql.gz
+*.sql.bak
+
+# Cache
+cache/
+*.cache

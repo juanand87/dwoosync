@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dashboard Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #059669;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 10000;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: #059669;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .nav-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex !important;
+                background: #f0f0f0 !important;
+                border: 2px solid #059669 !important;
+            }
+            
+            .nav-menu {
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important;
+                width: 100% !important;
+                height: 100vh !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: blur(10px) !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 2rem !important;
+                transition: right 0.3s ease !important;
+                z-index: 9999 !important;
+                padding-top: 80px !important;
+                overflow-y: auto !important;
+            }
+            
+            .nav-menu.active {
+                right: 0 !important;
+            }
+            
+            .nav-link {
+                font-size: 1.2rem !important;
+                padding: 1rem 0 !important;
+                text-align: center !important;
+                width: 100% !important;
+                border-bottom: 1px solid #e5e7eb !important;
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none !important;
+            }
+        }
+        
+        .main-content {
+            margin-top: 100px;
+            padding: 20px;
+        }
+        
+        .debug-info {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Test Dashboard</h2>
+                </div>
+                
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#" class="nav-link">🏠 Inicio</a>
+                    <a href="#" class="nav-link">💳 Facturación</a>
+                    <a href="#" class="nav-link">🎥 Tutoriales</a>
+                    <a href="#" class="nav-link">⚙️ Configurar Plugin</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1>Test del Menú Dashboard</h1>
+        
+        <div class="debug-info">
+            <h3>Instrucciones de Prueba:</h3>
+            <ol>
+                <li>Redimensiona la ventana a menos de 768px de ancho</li>
+                <li>Deberías ver un botón hamburguesa con fondo gris y borde verde</li>
+                <li>Haz clic en el botón hamburguesa</li>
+                <li>El menú debería deslizarse desde la derecha</li>
+                <li>Revisa la consola del navegador (F12) para ver los logs</li>
+            </ol>
+        </div>
+        
+        <div class="debug-info">
+            <h3>Logs esperados en consola:</h3>
+            <ul>
+                <li>"=== INICIALIZANDO MENÚ MÓVIL CON TIMEOUT ==="</li>
+                <li>"=== INICIANDO MENÚ MÓVIL ==="</li>
+                <li>"Estado del DOM: complete"</li>
+                <li>"navToggle encontrado: true"</li>
+                <li>"navMenu encontrado: true"</li>
+                <li>"Agregando event listener al botón hamburguesa"</li>
+                <li>"Enlaces encontrados: 4"</li>
+                <li>"Menú móvil inicializado correctamente"</li>
+                <li>Al hacer clic: "Botón hamburguesa clickeado!"</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // Simular otros scripts que podrían estar en el dashboard
+        console.log('Simulando otros scripts del dashboard...');
+        
+        // Simular un error que podría estar causando problemas
+        try {
+            // Código que podría fallar
+            console.log('Ejecutando código simulado...');
+        } catch (error) {
+            console.error('Error simulado:', error);
+        }
+        
+        // Menú móvil - versión simplificada
+        function initMobileMenu() {
+            console.log('=== INICIANDO MENÚ MÓVIL ===');
+            console.log('Estado del DOM:', document.readyState);
+            
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            console.log('navToggle encontrado:', !!navToggle);
+            console.log('navMenu encontrado:', !!navMenu);
+            
+            if (navToggle) {
+                console.log('Elemento navToggle:', navToggle);
+                console.log('Clases de navToggle:', navToggle.className);
+            }
+            
+            if (navMenu) {
+                console.log('Elemento navMenu:', navMenu);
+                console.log('Clases de navMenu:', navMenu.className);
+            }
+            
+            if (navToggle && navMenu) {
+                console.log('Agregando event listener al botón hamburguesa');
+                
+                // Usar addEventListener en lugar de onclick para evitar conflictos
+                navToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Botón hamburguesa clickeado!');
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    console.log('Menú activo:', navMenu.classList.contains('active'));
+                });
+                
+                // Cerrar menú al hacer clic en enlaces
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                console.log('Enlaces encontrados:', navLinks.length);
+                navLinks.forEach(function(link, index) {
+                    console.log('Agregando listener al enlace', index);
+                    link.addEventListener('click', function(e) {
+                        console.log('Enlace clickeado, cerrando menú');
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        // No usar preventDefault para permitir navegación
+                    });
+                });
+                
+                console.log('Menú móvil inicializado correctamente');
+            } else {
+                console.error('No se encontraron los elementos del menú móvil');
+                console.error('navToggle:', navToggle);
+                console.error('navMenu:', navMenu);
+            }
+        }
+        
+        // Inicializar menú móvil al final de todo
+        setTimeout(function() {
+            try {
+                console.log('=== INICIALIZANDO MENÚ MÓVIL CON TIMEOUT ===');
+                initMobileMenu();
+            } catch (error) {
+                console.error('Error al inicializar menú móvil:', error);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

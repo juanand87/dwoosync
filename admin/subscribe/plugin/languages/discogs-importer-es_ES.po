@@ -1,0 +1,324 @@
+# Discogs Importer - Spanish Translation
+# Copyright (C) 2024
+# This file is distributed under the same license as the Discogs Importer package.
+msgid ""
+msgstr ""
+"Project-Id-Version: DWooSync 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: dwoosync\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin/class-wdi-admin.php
+msgid "Discogs Importer"
+msgstr "Discogs Importer"
+
+msgid "Configuración API"
+msgstr "Configuración API"
+
+msgid "Plantillas y Etiquetas"
+msgstr "Plantillas y Etiquetas"
+
+msgid "Spotify"
+msgstr "Spotify"
+
+msgid "Opciones Avanzadas"
+msgstr "Opciones Avanzadas"
+
+msgid "Configuración de la API de Discogs"
+msgstr "Configuración de la API de Discogs"
+
+msgid "Introduce tus credenciales de la API de Discogs. Puedes obtenerlas desde el portal de desarrolladores de Discogs."
+msgstr "Introduce tus credenciales de la API de Discogs. Puedes obtenerlas desde el portal de desarrolladores de Discogs."
+
+msgid "Discogs API Key"
+msgstr "Clave de API de Discogs"
+
+msgid "Tu clave de API de Discogs."
+msgstr "Tu clave de API de Discogs."
+
+msgid "Discogs API Secret"
+msgstr "Secreto de API de Discogs"
+
+msgid "Tu secreto de API de Discogs."
+msgstr "Tu secreto de API de Discogs."
+
+msgid "Configuración del Servidor API"
+msgstr "Configuración del Servidor API"
+
+msgid "Configuración para conectar con el servidor API de Discogs Importer."
+msgstr "Configuración para conectar con el servidor API de Discogs Importer."
+
+msgid "URL del Servidor API"
+msgstr "URL del Servidor API"
+
+msgid "URL del servidor API intermediario (por defecto: http://localhost/api_discogs/api/index.php)"
+msgstr "URL del servidor API intermediario (por defecto: http://localhost/api_discogs/api/index.php)"
+
+msgid "Clave de Licencia"
+msgstr "Clave de Licencia"
+
+msgid "Tu clave de licencia para usar el servicio."
+msgstr "Tu clave de licencia para usar el servicio."
+
+msgid "Probar Conexión"
+msgstr "Probar Conexión"
+
+msgid "Probar conexión con el servidor API"
+msgstr "Probar conexión con el servidor API"
+
+msgid "Información del Servidor API"
+msgstr "Información del Servidor API"
+
+msgid "El servidor API se configura automáticamente en el entorno de producción."
+msgstr "El servidor API se configura automáticamente en el entorno de producción."
+
+msgid "Estado de Conexión"
+msgstr "Estado de Conexión"
+
+msgid "Conexión exitosa con la API"
+msgstr "Conexión exitosa con la API"
+
+msgid "Entorno de producción"
+msgstr "Entorno de producción"
+
+msgid "La URL del servidor API se configura automáticamente."
+msgstr "La URL del servidor API se configura automáticamente."
+
+msgid "Configura e integra automáticamente widgets de Spotify en tus productos y páginas."
+msgstr "Configura e integra automáticamente widgets de Spotify en tus productos y páginas."
+
+msgid "Integración con Spotify"
+msgstr "Integración con Spotify"
+
+msgid "La integración con Spotify está disponible solo en el Plan +Spotify."
+msgstr "La integración con Spotify está disponible solo en el Plan +Spotify."
+
+msgid "Mejora tu plan para acceder a esta funcionalidad y mostrar reproductores de Spotify en tus productos."
+msgstr "Mejora tu plan para acceder a esta funcionalidad y mostrar reproductores de Spotify en tus productos."
+
+msgid "Widget de Spotify"
+msgstr "Widget de Spotify"
+
+msgid "Mejorar Plan"
+msgstr "Mejorar Plan"
+
+msgid "Shortcode Disponible"
+msgstr "Shortcode Disponible"
+
+msgid "Uso básico:"
+msgstr "Uso básico:"
+
+msgid "Con ancho personalizado:"
+msgstr "Con ancho personalizado:"
+
+msgid "Parámetros disponibles:"
+msgstr "Parámetros disponibles:"
+
+msgid "Ancho del widget (por defecto: 500px)"
+msgstr "Ancho del widget (por defecto: 500px)"
+
+msgid "El alto se ajusta automáticamente. Tamaño estándar: 500px de ancho, alto automático."
+msgstr "El alto se ajusta automáticamente. Tamaño estándar: 500px de ancho, alto automático."
+
+msgid "Casos de Uso"
+msgstr "Casos de Uso"
+
+msgid "1. En páginas de producto WooCommerce"
+msgstr "1. En páginas de producto WooCommerce"
+
+msgid "El shortcode detecta automáticamente el título del producto y busca el álbum en Spotify."
+msgstr "El shortcode detecta automáticamente el título del producto y busca el álbum en Spotify."
+
+msgid "2. En posts y páginas"
+msgstr "2. En posts y páginas"
+
+msgid "Si el post tiene metadatos de Discogs guardados, los usará para la búsqueda."
+msgstr "Si el post tiene metadatos de Discogs guardados, los usará para la búsqueda."
+
+msgid "3. En cualquier parte del sitio"
+msgstr "3. En cualquier parte del sitio"
+
+msgid "Puedes usar el shortcode en cualquier parte donde necesites mostrar un widget de Spotify."
+msgstr "Puedes usar el shortcode en cualquier parte donde necesites mostrar un widget de Spotify."
+
+msgid "Nota Importante"
+msgstr "Nota Importante"
+
+msgid "El shortcode funciona mejor cuando se usa en páginas de producto WooCommerce o en posts que contengan información de Discogs. En otros contextos, puede mostrar un mensaje de \"No disponible\"."
+msgstr "El shortcode funciona mejor cuando se usa en páginas de producto WooCommerce o en posts que contengan información de Discogs. En otros contextos, puede mostrar un mensaje de \"No disponible\"."
+
+msgid "Configuración del Reproductor"
+msgstr "Configuración del Reproductor"
+
+msgid "Personaliza la apariencia del reproductor de Spotify."
+msgstr "Personaliza la apariencia del reproductor de Spotify."
+
+msgid "Diseño del Reproductor"
+msgstr "Diseño del Reproductor"
+
+msgid "Diseño Estándar"
+msgstr "Diseño Estándar"
+
+msgid "Diseño Compacto"
+msgstr "Diseño Compacto"
+
+msgid "Ancho del Reproductor"
+msgstr "Ancho del Reproductor"
+
+msgid "Ancho del reproductor en píxeles (200-800px)."
+msgstr "Ancho del reproductor en píxeles (200-800px)."
+
+msgid "Alto del Reproductor"
+msgstr "Alto del Reproductor"
+
+msgid "El diseño compacto usa un alto fijo optimizado (173px) con el estilo por defecto de Spotify."
+msgstr "El diseño compacto usa un alto fijo optimizado (173px) con el estilo por defecto de Spotify."
+
+msgid "Tema del Reproductor"
+msgstr "Tema del Reproductor"
+
+msgid "Claro"
+msgstr "Claro"
+
+msgid "Oscuro"
+msgstr "Oscuro"
+
+msgid "Tema visual del reproductor."
+msgstr "Tema visual del reproductor."
+
+msgid "Reproducción Automática"
+msgstr "Reproducción Automática"
+
+msgid "Iniciar reproducción automáticamente al cargar el reproductor."
+msgstr "Iniciar reproducción automáticamente al cargar el reproductor."
+
+msgid "Vista Previa"
+msgstr "Vista Previa"
+
+msgid "Esta es una vista previa de cómo se verá el reproductor:"
+msgstr "Esta es una vista previa de cómo se verá el reproductor:"
+
+msgid "Tamaño estándar:"
+msgstr "Tamaño estándar:"
+
+msgid "Diseño:"
+msgstr "Diseño:"
+
+msgid "Compacto"
+msgstr "Compacto"
+
+msgid "Estándar"
+msgstr "Estándar"
+
+msgid "Opciones Avanzadas"
+msgstr "Opciones Avanzadas"
+
+msgid "Configura opciones adicionales para el importador."
+msgstr "Configura opciones adicionales para el importador."
+
+msgid "Formato en el Título"
+msgstr "Formato en el Título"
+
+msgid "Anteponer Formato al Título"
+msgstr "Anteponer Formato al Título"
+
+msgid "Personalización de Pestañas"
+msgstr "Personalización de Pestañas"
+
+msgid "Personaliza las pestañas de la página del producto."
+msgstr "Personaliza las pestañas de la página del producto."
+
+msgid "Cambiar Pestaña \"Descripción\" por \"Listado de Canciones\""
+msgstr "Cambiar Pestaña \"Descripción\" por \"Listado de Canciones\""
+
+msgid "Acciones Rápidas en Editor"
+msgstr "Acciones Rápidas en Editor"
+
+msgid "Activa o desactiva los campos de acceso rápido que aparecen en la caja del importador dentro de la página de edición de productos."
+msgstr "Activa o desactiva los campos de acceso rápido que aparecen en la caja del importador dentro de la página de edición de productos."
+
+msgid "Botón Publicar"
+msgstr "Botón Publicar"
+
+msgid "Campo de Precio"
+msgstr "Campo de Precio"
+
+msgid "Selector de Categorías"
+msgstr "Selector de Categorías"
+
+msgid "Guardar Cambios"
+msgstr "Guardar Cambios"
+
+msgid "Idioma del Plugin"
+msgstr "Idioma del Plugin"
+
+msgid "Selecciona el idioma para la interfaz del plugin."
+msgstr "Selecciona el idioma para la interfaz del plugin."
+
+msgid "Español"
+msgstr "Español"
+
+msgid "English"
+msgstr "English"
+
+msgid "La integración con Spotify está disponible solo en el Plan +Spotify. Mejorar plan aquí"
+msgstr "La integración con Spotify está disponible solo en el Plan +Spotify. Mejorar plan aquí"
+
+msgid "Configura opciones adicionales para el importador."
+msgstr "Configura opciones adicionales para el importador."
+
+msgid "Formato en el Título"
+msgstr "Formato en el Título"
+
+msgid "Anteponer Formato al Título"
+msgstr "Anteponer Formato al Título"
+
+msgid "Anteponer el formato (ej. \"Vinilo\") al título del producto al importar."
+msgstr "Anteponer el formato (ej. \"Vinilo\") al título del producto al importar."
+
+msgid "Personalización de Pestañas"
+msgstr "Personalización de Pestañas"
+
+msgid "Personaliza las pestañas de la página del producto."
+msgstr "Personaliza las pestañas de la página del producto."
+
+msgid "Cambiar Pestaña \"Descripción\" por \"Listado de Canciones\""
+msgstr "Cambiar Pestaña \"Descripción\" por \"Listado de Canciones\""
+
+msgid "Cambiar el nombre de la pestaña \"Descripción\" por \"Listado de Canciones\" en las páginas de producto."
+msgstr "Cambiar el nombre de la pestaña \"Descripción\" por \"Listado de Canciones\" en las páginas de producto."
+
+msgid "Acciones Rápidas en Editor"
+msgstr "Acciones Rápidas en Editor"
+
+msgid "Activa o desactiva los campos de acceso rápido que aparecen en la caja del importador dentro de la página de edición de productos."
+msgstr "Activa o desactiva los campos de acceso rápido que aparecen en la caja del importador dentro de la página de edición de productos."
+
+msgid "Botón Publicar"
+msgstr "Botón Publicar"
+
+msgid "Mostrar el botón \"Publicar\" junto al de \"Buscar\"."
+msgstr "Mostrar el botón \"Publicar\" junto al de \"Buscar\"."
+
+msgid "Campo de Precio"
+msgstr "Campo de Precio"
+
+msgid "Mostrar un campo para introducir el precio rápidamente."
+msgstr "Mostrar un campo para introducir el precio rápidamente."
+
+msgid "Selector de Categorías"
+msgstr "Selector de Categorías"
+
+msgid "Mostrar un selector de categorías con buscador."
+msgstr "Mostrar un selector de categorías con buscador."
+
+msgid "Selecciona el idioma para la interfaz del plugin."
+msgstr "Selecciona el idioma para la interfaz del plugin."

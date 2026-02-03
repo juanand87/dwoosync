@@ -1,0 +1,465 @@
+================================================================================
+                    RESUMEN DEL SISTEMA DE BILLING CYCLES
+================================================================================
+
+Fecha: 1 de Octubre, 2025
+Sistema: DWooSync - Gestión de Suscripciones y Facturación
+
+================================================================================
+1. ESTRUCTURA DE LA TABLA billing_cycles
+================================================================================
+
+Campos Obligatorios (NOT NULL):
+- id (INT, AUTO_INCREMENT, PRIMARY KEY)
+- subscriber_id (INT, FOREIGN KEY)
+- plan_type (VARCHAR(50), DEFAULT 'free')
+- license_key (VARCHAR(255))
+- cycle_start_date (DATE)
+- cycle_end_date (DATE)
+- due_date (DATE)
+- invoice_number (VARCHAR(100), UNIQUE)
+- amount (DECIMAL(10,2), DEFAULT 0.00)
+
+Campos Opcionales (NULLABLE):
+- is_active (TINYINT, DEFAULT 0)
+- currency (VARCHAR(3), DEFAULT 'USD')
+- status (ENUM, DEFAULT 'pending')
+- paid_date (DATE)
+- payment_method (VARCHAR(50))
+- payment_reference (VARCHAR(100))
+- sync_count (INT, DEFAULT 0)
+- api_calls_count (INT, DEFAULT 0)
+- usage_count (INT, DEFAULT 0)
+- products_synced (INT, DEFAULT 0)
+- created_at (TIMESTAMP)
+- updated_at (TIMESTAMP)
+
+Estados posibles: 'pending', 'paid', 'cancelled', 'refunded', 'overdue', 'completed'
+
+================================================================================
+2. FLUJO COMPLETO DE CREACIÓN DE BILLING CYCLES
+================================================================================
+
+PASO 1: REGISTRO (signup.php)
+------------------------------
+- Usuario completa formulario de registro
+- Se crea registro en tabla 'subscribers' con status='pending'
+- Se crea registro en tabla 'licenses' con:
+  * license_key: DISC{hash}
+  * subscription_code: SUB{hash}
+  * status: 'pending'
+  * usage_limit: Según el plan desde subscription_plans
+  * expires_at: +1 año
+- Se guardan datos en sesión:
+  * $_SESSION['subscriber_id']
+  * $_SESSION['license_key']
+  * $_SESSION['user_plan']
+  * $_SESSION['signup_data']
+- Redirige a: checkout.php?plan={plan}&lang={lang}
+
+NOTA: NO se crea billing_cycle en este paso
+
+PASO 2: CHECKOUT (checkout.php)
+--------------------------------
+- Verifica que el usuario esté logueado
+- Obtiene plan desde URL: $_GET['plan']
+- Muestra resumen del plan seleccionado
+- Usuario puede cambiar de plan con el selector
+- JavaScript actualiza el input hidden cuando cambia de plan
+- Al hacer clic en "Proceder al Pago" → POST a process_checkout.php
+
+PASO 3: PROCESAR CHECKOUT (process_checkout.php)
+-------------------------------------------------
+Este es el paso CRÍTICO donde se crea/actualiza el billing_cycle
+
+A) Buscar factura pendiente existente:
+   SELECT id, plan_type, amount 
+   FROM billing_cycles 
+   WHERE subscriber_id = ? 
+   AND status = 'pending' 
+   AND is_active = 0
+
+B) Si EXISTE factura pendiente:
+   - Obtener license_key del usuario
+   - Obtener precio del nuevo plan desde subscription_plans
+   - Calcular fechas:
+     * cycle_start_date = fecha actual (Y-m-d)
+     * cycle_end_date = fecha actual + 30 días
+     * due_date = cycle_end_date
+   - Generar nuevo invoice_number: INV{fecha}_{hash}
+   
+   - ACTUALIZAR factura existente:
+     UPDATE billing_cycles 
+     SET plan_type = ?,
+         license_key = ?,
+         amount = ?,
+         cycle_start_date = ?,
+         cycle_end_date = ?,
+         due_date = ?,
+         invoice_number = ?,
+         updated_at = NOW()
+     WHERE id = ?
+   
+   - Log: "Factura actualizada de plan X ($Y) a plan Z ($W)"
+
+C) Si NO EXISTE factura pendiente:
+   - Obtener license_key del usuario
+   - Obtener precio del plan desde subscription_plans
+   - Calcular fechas (igual que arriba)
+   - Generar invoice_number único
+   
+   - CREAR nueva factura:
+     INSERT INTO billing_cycles (
+         subscriber_id, 
+         license_key, 
+         plan_type, 
+         cycle_start_date, 
+         cycle_end_date, 
+         due_date,
+         paid_date,
+         invoice_number,
+         amount,
+         status,
+         is_active
+     ) VALUES (?, ?, ?, ?, ?, ?, NULL, ?, ?, 'pending', 0)
+   
+   - Log: "Nueva factura creada con ID: X"
+
+D) Guardar billing_cycle_id en sesión
+E) Redirigir a: payment.php?plan={plan}&billing_cycle_id={id}&lang={lang}
+
+PASO 4: PAYMENT (payment.php)
+------------------------------
+- Recibe billing_cycle_id desde URL
+- Muestra métodos de pago según el plan:
+  * FREE: Botón "Activar Cuenta Gratuita" → process_free_plan.php
+  * PREMIUM: Botón de PayPal con plan_id
+  * ENTERPRISE: Botón de PayPal con plan_id
+- Botones de simulación para testing
+- Al completar pago (PayPal/MercadoPago) → exito.php?billing_cycle_id={id}&sub={sub}
+
+PASO 5: ÉXITO (exito.php)
+--------------------------
+- Recibe billing_cycle_id desde URL
+- Obtiene plan_type del billing_cycle
+- Calcula fechas finales:
+  * cycle_start_date = fecha actual
+  * cycle_end_date = fecha actual + 30 días
+  * due_date = cycle_end_date
+  * paid_date = fecha actual
+
+- ACTUALIZAR billing_cycle:
+  UPDATE billing_cycles 
+  SET is_active = 1, 
+      status = 'paid',
+      cycle_start_date = ?,
+      cycle_end_date = ?,
+      due_date = ?,
+      paid_date = ?
+  WHERE id = ? AND subscriber_id = ?
+
+- ACTUALIZAR licenses:
+  * Calcular usage_limit según plan:
+    - free: 10
+    - premium: 5000
+    - enterprise: 20000
+  
+  UPDATE licenses 
+  SET status = 'active',
+      expires_at = ?,
+      usage_limit = ?
+  WHERE subscriber_id = ?
+
+- ACTUALIZAR subscribers:
+  UPDATE subscribers 
+  SET status = 'active',
+      plan_type = ?
+  WHERE id = ?
+
+- Redirige a dashboard con mensaje de éxito
+
+================================================================================
+3. CASOS ESPECIALES
+================================================================================
+
+CASO 1: PLAN GRATUITO (process_free_plan.php)
+----------------------------------------------
+- Usuario hace clic en "Activar Cuenta Gratuita" en payment.php
+- NO pasa por PayPal/MercadoPago
+- Proceso directo:
+  1. Actualizar subscribers.status = 'active'
+  2. Actualizar licenses.status = 'active', usage_limit = 10
+  3. Desactivar ciclos anteriores
+  4. Crear billing_cycle con:
+     * status = 'paid'
+     * is_active = 1
+     * amount = 0.00
+     * cycle_start_date = fecha actual
+     * cycle_end_date = fecha actual + 30 días
+     * due_date = cycle_end_date
+     * paid_date = fecha actual
+     * license_key = de la sesión
+  5. Actualizar licenses.expires_at = cycle_end_date
+  6. Redirigir a dashboard
+
+CASO 2: USUARIO CAMBIA DE PLAN ANTES DE PAGAR
+----------------------------------------------
+Ejemplo:
+1. Usuario se registra con plan Free
+2. En checkout cambia a Premium → billing_cycle_id=100 (Premium, $22)
+3. Cambia a Enterprise → billing_cycle_id=100 (Enterprise, $45) [ACTUALIZADO]
+4. Hace clic "Proceder al Pago" → process_checkout.php
+5. Se ACTUALIZA la factura 100 con plan Enterprise
+6. Paga → La factura 100 se marca como 'paid'
+
+Resultado: Solo 1 factura por usuario, no múltiples facturas pendientes
+
+CASO 3: RENOVACIÓN MENSUAL
+---------------------------
+- El plan gratuito y todos los planes duran 30 días
+- Al vencer, se debe crear un nuevo billing_cycle
+- El ciclo anterior permanece con status='paid', is_active=0
+- El nuevo ciclo tiene status='pending', is_active=0
+- Al pagar/renovar: status='paid', is_active=1
+
+================================================================================
+4. ARCHIVOS CLAVE
+================================================================================
+
+subscribe/pages/signup.php
+- Crea subscriber y license con status='pending'
+- NO crea billing_cycle
+- Redirige a checkout.php
+
+subscribe/pages/checkout.php
+- Muestra resumen del plan
+- Permite cambiar de plan con JavaScript
+- Formulario POST a process_checkout.php
+
+subscribe/pages/process_checkout.php (CRÍTICO)
+- Crea/actualiza billing_cycle pendiente
+- Incluye todos los datos obligatorios
+- Redirige a payment.php con billing_cycle_id
+
+subscribe/pages/payment.php
+- Muestra métodos de pago según el plan
+- Botones de PayPal/MercadoPago
+- Plan FREE: enlace directo a process_free_plan.php
+- Simulador de pagos para testing
+
+subscribe/pages/process_free_plan.php
+- Activa plan gratuito directamente
+- Crea billing_cycle completo
+- Actualiza subscribers y licenses
+- Redirige a dashboard
+
+subscribe/pages/exito.php
+- Actualiza billing_cycle de 'pending' a 'paid'
+- Actualiza fechas finales
+- Actualiza licenses y subscribers
+- Muestra mensaje de éxito
+
+================================================================================
+5. DATOS CREADOS SEGÚN EL PLAN
+================================================================================
+
+PLAN FREE:
+----------
+billing_cycles:
+- amount: 0.00
+- cycle_start_date: fecha actual
+- cycle_end_date: fecha actual + 30 días
+- due_date: cycle_end_date
+- paid_date: fecha actual
+- status: 'paid'
+- is_active: 1
+
+licenses:
+- status: 'active'
+- usage_limit: 10
+- expires_at: fecha actual + 30 días
+
+subscribers:
+- status: 'active'
+- plan_type: 'free'
+
+PLAN PREMIUM:
+-------------
+billing_cycles:
+- amount: 22.00 (según subscription_plans)
+- cycle_start_date: fecha actual
+- cycle_end_date: fecha actual + 30 días
+- due_date: cycle_end_date
+- paid_date: fecha actual
+- status: 'paid'
+- is_active: 1
+
+licenses:
+- status: 'active'
+- usage_limit: 5000
+- expires_at: fecha actual + 30 días
+
+subscribers:
+- status: 'active'
+- plan_type: 'premium'
+
+PLAN ENTERPRISE (+Spotify):
+----------------------------
+billing_cycles:
+- amount: 45.00 (según subscription_plans)
+- cycle_start_date: fecha actual
+- cycle_end_date: fecha actual + 30 días
+- due_date: cycle_end_date
+- paid_date: fecha actual
+- status: 'paid'
+- is_active: 1
+
+licenses:
+- status: 'active'
+- usage_limit: 20000
+- expires_at: fecha actual + 30 días
+
+subscribers:
+- status: 'active'
+- plan_type: 'enterprise'
+
+================================================================================
+6. LOGS DE DEBUGGING
+================================================================================
+
+Para verificar el flujo, revisar logs en: C:\xampp\apache\logs\error.log
+
+Patrones de búsqueda:
+- "CHECKOUT:" - Logs de checkout.php
+- "PROCESS_CHECKOUT:" - Logs de process_checkout.php
+- "CREATE_PENDING_CYCLE:" - Logs de create_pending_cycle.php (OBSOLETO)
+
+Ejemplo de logs exitosos:
+CHECKOUT: === INICIO ===
+CHECKOUT: subscriber_id en sesión: 150
+CHECKOUT: plan_type: enterprise
+PROCESS_CHECKOUT: === INICIO ===
+PROCESS_CHECKOUT: subscriber_id = 150
+PROCESS_CHECKOUT: plan_type = enterprise
+PROCESS_CHECKOUT: Actualizando factura pendiente ID=100 de plan 'premium' ($22) a 'enterprise' ($45)
+PROCESS_CHECKOUT: ✓ Factura actualizada exitosamente
+
+================================================================================
+7. VENTAJAS DEL SISTEMA ACTUAL
+================================================================================
+
+✅ Un usuario solo tiene UNA factura pendiente a la vez
+✅ Puede cambiar de plan antes de pagar sin crear duplicados
+✅ Todos los campos NOT NULL están completos desde el inicio
+✅ Historial limpio en la base de datos
+✅ Logs detallados para debugging
+✅ Maneja correctamente actualizaciones de plan
+✅ Genera invoice_number único para cada factura
+✅ Calcula automáticamente fechas de inicio y fin
+✅ Establece usage_limit correcto según el plan
+
+================================================================================
+8. PENDIENTES Y MEJORAS FUTURAS
+================================================================================
+
+PENDIENTE:
+- Sistema de renovación automática mensual (cron job)
+- Notificaciones por email antes del vencimiento
+- Proceso de downgrade de plan
+- Manejo de reembolsos
+
+MEJORAS SUGERIDAS:
+- Dashboard de administración para ver facturas pendientes
+- Reporte de ingresos mensuales
+- Exportación de facturas en PDF
+- Integración con más métodos de pago
+
+================================================================================
+9. TROUBLESHOOTING
+================================================================================
+
+PROBLEMA: No se crea billing_cycle al presionar "Proceder al Pago"
+SOLUCIÓN:
+1. Verificar logs en error.log
+2. Buscar "PROCESS_CHECKOUT:" en los logs
+3. Verificar que subscriber_id esté en sesión
+4. Verificar que license_key exista en tabla licenses
+5. Verificar que subscription_plans tenga el precio del plan
+
+PROBLEMA: billing_cycle_id viene vacío en exito.php
+SOLUCIÓN:
+1. Verificar que process_checkout.php redirige correctamente
+2. Verificar que payment.php mantiene el billing_cycle_id en URL
+3. Verificar logs de PROCESS_CHECKOUT para ver el ID creado
+
+PROBLEMA: Error "Column cannot be null"
+SOLUCIÓN:
+1. Verificar que todos los campos NOT NULL tengan valores
+2. Especialmente: license_key, invoice_number, fechas
+3. Generar invoice_number único antes del INSERT
+
+================================================================================
+10. CÓDIGO DE EJEMPLO
+================================================================================
+
+CREAR FACTURA PENDIENTE:
+------------------------
+INSERT INTO billing_cycles (
+    subscriber_id, 
+    license_key, 
+    plan_type, 
+    cycle_start_date, 
+    cycle_end_date, 
+    due_date,
+    paid_date,
+    invoice_number,
+    amount,
+    status,
+    is_active
+) VALUES (
+    150,                        -- subscriber_id
+    'DISCB971B419',             -- license_key
+    'enterprise',               -- plan_type
+    '2025-10-01',              -- cycle_start_date
+    '2025-10-31',              -- cycle_end_date
+    '2025-10-31',              -- due_date
+    NULL,                       -- paid_date (se llena al pagar)
+    'INV20251001_A1B2C3D4',    -- invoice_number
+    45.00,                      -- amount
+    'pending',                  -- status
+    0                           -- is_active
+)
+
+ACTUALIZAR FACTURA AL PAGAR:
+-----------------------------
+UPDATE billing_cycles 
+SET is_active = 1, 
+    status = 'paid',
+    cycle_start_date = '2025-10-01',
+    cycle_end_date = '2025-10-31',
+    due_date = '2025-10-31',
+    paid_date = '2025-10-01',
+    updated_at = NOW() 
+WHERE id = 100 AND subscriber_id = 150
+
+ACTUALIZAR LICENSES:
+--------------------
+UPDATE licenses 
+SET status = 'active',
+    expires_at = '2025-10-31',
+    usage_limit = 20000,
+    updated_at = NOW()
+WHERE subscriber_id = 150
+
+ACTUALIZAR SUBSCRIBERS:
+-----------------------
+UPDATE subscribers 
+SET status = 'active',
+    plan_type = 'enterprise',
+    updated_at = NOW()
+WHERE id = 150
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================
+

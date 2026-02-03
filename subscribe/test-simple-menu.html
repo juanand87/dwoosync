@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Menú Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #059669;
+        }
+
+        /* Botón hamburguesa */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 10000;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: #059669;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .nav-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex !important;
+                background: #f0f0f0 !important;
+                border: 2px solid #059669 !important;
+            }
+            
+            .nav-menu {
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important;
+                width: 100% !important;
+                height: 100vh !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: blur(10px) !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 2rem !important;
+                transition: right 0.3s ease !important;
+                z-index: 9999 !important;
+                padding-top: 80px !important;
+                overflow-y: auto !important;
+            }
+            
+            .nav-menu.active {
+                right: 0 !important;
+            }
+            
+            .nav-link {
+                font-size: 1.2rem !important;
+                padding: 1rem 0 !important;
+                text-align: center !important;
+                width: 100% !important;
+                border-bottom: 1px solid #e5e7eb !important;
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none !important;
+            }
+        }
+        
+        .main-content {
+            margin-top: 100px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Test Menu</h2>
+                </div>
+                
+                <button class="nav-toggle" id="nav-toggle">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#" class="nav-link">Inicio</a>
+                    <a href="#" class="nav-link">Planes</a>
+                    <a href="#" class="nav-link">Características</a>
+                    <a href="#" class="nav-link">Contacto</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1>Test del Menú Móvil</h1>
+        <p>Redimensiona la ventana a menos de 768px para ver el menú móvil.</p>
+        <p>Haz clic en el botón hamburguesa para abrir/cerrar el menú.</p>
+        <p>Revisa la consola del navegador para ver los logs.</p>
+    </main>
+
+    <script>
+        function initMobileMenu() {
+            console.log('Inicializando menú móvil...');
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            console.log('navToggle encontrado:', !!navToggle);
+            console.log('navMenu encontrado:', !!navMenu);
+            
+            if (navToggle && navMenu) {
+                console.log('Agregando event listener al botón hamburguesa');
+                
+                navToggle.onclick = function() {
+                    console.log('Botón hamburguesa clickeado!');
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    console.log('Menú activo:', navMenu.classList.contains('active'));
+                };
+                
+                // Cerrar menú al hacer clic en enlaces
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(function(link) {
+                    link.onclick = function() {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    };
+                });
+                
+                console.log('Menú móvil inicializado correctamente');
+            } else {
+                console.error('No se encontraron los elementos del menú móvil');
+            }
+        }
+        
+        // Inicializar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
