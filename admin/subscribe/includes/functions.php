@@ -103,7 +103,7 @@ function getSubscriptionPlans($lang = 'es') {
             [
                 'id' => 'premium',
                 'name' => 'Premium',
-                'price' => 22,
+                'price' => 6,
                 'featured' => true,
                 'features' => [
                     $isEnglish ? 'Unlimited imports' : 'Importaciones ilimitadas',
@@ -117,7 +117,7 @@ function getSubscriptionPlans($lang = 'es') {
             [
                 'id' => 'enterprise',
                 'name' => '+Spotify',
-                'price' => 29,
+                'price' => 10,
                 'featured' => false,
                 'features' => [
                     $isEnglish ? 'Unlimited imports' : 'Importaciones ilimitadas',
