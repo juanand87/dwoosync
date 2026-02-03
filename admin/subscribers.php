@@ -31,7 +31,7 @@ $db = Database::getInstance();
 $licenseManager = new LicenseManager();
 
 // Procesar acciones
-$action = $_GET['action'] ?? '';
+$action = $_POST['action'] ?? $_GET['action'] ?? '';
 $message = '';
 $error = '';
 
