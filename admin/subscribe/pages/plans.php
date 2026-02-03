@@ -410,7 +410,7 @@ $subscriber_data = $subscriber->fetch(PDO::FETCH_ASSOC);
             <div class="plan-card featured">
                 <div class="plan-name">Premium</div>
                 <div class="plan-price">
-                    <span class="currency">$</span>29
+                    <span class="currency">$</span>6
                     <span class="period">/<?php echo t('mes', 'month'); ?></span>
                 </div>
                 <div class="plan-description">
@@ -435,7 +435,7 @@ $subscriber_data = $subscriber->fetch(PDO::FETCH_ASSOC);
             <div class="plan-card">
                 <div class="plan-name">+Spotify</div>
                 <div class="plan-price">
-                    <span class="currency">$</span>29
+                    <span class="currency">$</span>10
                     <span class="period">/<?php echo t('mes', 'month'); ?></span>
                 </div>
                 <div class="plan-description">
